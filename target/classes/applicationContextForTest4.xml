@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <context:property-placeholder location="musicPlayer.properties"/>
+
+    <bean id="music1"
+          class="org.example.Test4.ClassicalMusic">
+    </bean>
+
+    <bean id="music2"
+          class="org.example.Test4.RockMusic">
+    </bean>
+
+    <bean id="music3"
+          class="org.example.Test4.RapMusic">
+    </bean>
+
+    <bean id="musicList" class="java.util.ArrayList">
+        <constructor-arg>
+            <list>
+                <ref bean="music1"></ref>
+                <ref bean="music2"></ref>
+                <ref bean="music3"></ref>
+            </list>
+        </constructor-arg>
+    </bean>
+
+    <bean id="musicPlayer"
+          class="org.example.Test4.MusicPlayer">
+        <property name="musicList" ref="musicList"/>
+        <property name="name" value="${musicPLayer.name}"/>
+        <property name="volume" value="${musicPlayer.volume}"/>
+    </bean>
+
+
+</beans>
